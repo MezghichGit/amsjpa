@@ -26,10 +26,12 @@ public class Article {
 	public Article() {
 	}
 
-	public Article(String label, float price) {
-		this.price = price;
-		this.label = label;
-	}
+    public Article(String label, float price, String picture) {
+        this.price = price;
+        this.label = label;
+        this.picture = picture;
+        }
+
 
 	public void setId(long id) {
 		this.id = id;
@@ -68,4 +70,17 @@ public class Article {
 	public void setProvider(Provider provider) {
 		this.provider = provider;
 	}
+    @Column(name = "picture")
+    private String picture;
+
+    public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	
+	
+	public String getPicture() {
+		return picture;
+	}
+
+
 }

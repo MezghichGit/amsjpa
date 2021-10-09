@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.sip.ams.entities.Article;
 import com.sip.ams.entities.Provider;
 import com.sip.ams.repositories.ProviderRepository;
 
@@ -81,4 +83,18 @@ public class ProviderController {
 		providerRepository.save(provider);
 		return "redirect:list";
 	}
+	
+	@GetMapping("show/{id}")
+	public String showProvider(@PathVariable("id") long id, Model model) {
+		Provider provider = providerRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid provider Id:" + id));
+		List<Article> articles = providerRepository.findArticlesByProvider(id);
+		for (Article a : articles)
+			System.out.println("Article = " + a.getLabel());
+		
+		model.addAttribute("articles", articles);
+		model.addAttribute("provider", provider);
+		return "provider/showProvider";
+	}
+
 }
