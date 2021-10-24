@@ -102,7 +102,7 @@ public class AccountController {
 		msg.setTo(email);
 		if (state == true) {
 			msg.setSubject("Account Has Been Activated");
-			msg.setText("Hello, Your account has been activated. " + "You can log in : http://127.0.0.1:81/login"
+			msg.setText("Hello, Your account has been activated. " + "You can log in : https://amsmvcjpamezghich.herokuapp.com/"
 					+ " \n Best Regards!");
 		} else {
 			msg.setSubject("Account Has Been disactivated");
